@@ -1,0 +1,73 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Claim Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="claim">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ claim.title }}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-badge [color]="getStatusColor(claim.status)">
+          {{ claim.status | titlecase }}
+        </ion-badge>
+      </ion-card-subtitle>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>
+          <h3>Amount</h3>
+          <p>${{ claim.amount.toFixed(2) }}</p>
+        </ion-label>
+      </ion-item>
+      
+      <ion-item lines="none">
+        <ion-label>
+          <h3>Date</h3>
+          <p>{{ claim.date | date:'medium' }}</p>
+        </ion-label>
+      </ion-item>
+      
+      <ion-item lines="none">
+        <ion-label>
+          <h3>Provider</h3>
+          <p>{{ claim.provider }}</p>
+        </ion-label>
+      </ion-item>
+      
+      <ion-item lines="none">
+        <ion-label>
+          <h3>Receipt Number</h3>
+          <p>{{ claim.receiptNumber }}</p>
+        </ion-label>
+      </ion-item>
+      
+      <ion-item lines="none">
+        <ion-label>
+          <h3>Description</h3>
+          <p>{{ claim.description }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="action-buttons">
+    <ion-button expand="block" fill="outline" (click)="goBack()">
+      Back to Claims
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="!claim">
+  <ion-item>
+    <ion-label>
+      <h2>Claim not found</h2>
+      <p>The requested claim could not be located.</p>
+    </ion-label>
+  </ion-item>
+</ion-content>

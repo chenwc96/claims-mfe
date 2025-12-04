@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Claims</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Claims</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let claim of claims" [routerLink]="'/claim/detail/' + claim.id">
+      <ion-label>
+        <h2>{{ claim.title }}</h2>
+        <p>Amount: ${{ claim.amount.toFixed(2) }}</p>
+        <p>Date: {{ claim.date | date }}</p>
+      </ion-label>
+      <ion-badge [color]="getStatusColor(claim.status)" slot="end">
+        {{ claim.status | titlecase }}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
