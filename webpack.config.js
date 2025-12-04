@@ -16,8 +16,10 @@ module.exports = withModuleFederationPlugin({
   // optional: avoid running shared initializers that sometimes break in mobile webviews
   // (only if you experience init-related errors after this change)
   // skipInitializers: true,
+  skipInitializers: true,
 
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
   },
 });
+
